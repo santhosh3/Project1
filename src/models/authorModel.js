@@ -5,21 +5,21 @@ const authorSchema = new mongoose.Schema({
 
     "firstName": {
         type: String,
-        required: true, 
-        // trim: true
+        required: [true, "firstName is required" ],
+        trim: true
     },
 
     "lastName": {
         type: String,
-        required: true,
-        // trim: true
+        required: [true, "lastName is required"],
+        trim: true
     },
 
     "title": {
         type: String,
-        required: true,
-        // trim: true,
-        enum: ["Mr", "Mrs", "Miss"]
+        required: [true, "title is required"],
+        enum: ["Mr", "Mrs", "Miss"],
+        trim: true
     },
 
     "email": {
@@ -34,13 +34,13 @@ const authorSchema = new mongoose.Schema({
         required: true, 
         unique: true,
         lowercase : true,
-        // trim: true
+        trim: true
     },
 
     "password": {
         type: String,
-        required: true,
-        // trim: true
+        required: [true,"password is required"],
+        trim: true
     }
 
 }, { timestamps: true })

@@ -10,9 +10,6 @@ let date = moment().format('DD/MM/YYYY');
 console.log(date)
 
 
-
-
-
 const blogSchema = new mongoose.Schema({
 
     "title": {
@@ -21,17 +18,20 @@ const blogSchema = new mongoose.Schema({
         trim : true,
     },
 
+
     "body": {
         type: String,
         required: true,
         trim : true
     },
 
+
     "authorId": {
         type: ObjectId,
         ref: "author",
         required : true
     },
+
 
     "tags": [{type : String}],
     "category": {
@@ -40,28 +40,29 @@ const blogSchema = new mongoose.Schema({
         // examples :[technology,entertainment,life style,food,fashion]
     },
 
+
+
     "subcategory": [{type : String}],
     "isPublished": {
         type: Boolean,
         default: false
     },
+
+
     "publishedAt": Date, // if published is true publishedAt will have a date 2021-09-17T04:25:07.803Z
     date : {
         type : String,
       default : date
     },
 
+
     "deleted": {
         type: Boolean,
         default: false
     },
+
+    
     "deletedAt": Date, // if deleted is true deletedAt will have a date 2021-09-17T04:25:07.803Z,
-
-    // date : {
-    //         type : String,
-    //         default : todayDate
-    //     }
-
 
 }, { timestamps: true })
 
