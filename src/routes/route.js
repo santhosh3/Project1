@@ -12,32 +12,16 @@ const authMiddleware =require("../middleware/authMiddleware")
 router.post("/authors",authorController.createAuthor1)
 
 router.post("/blogs",authMiddleware.authentication,authMiddleware.authorization,blogController.createBlogger)
-
-  
-router.get("/getBlogs",blogController.getBlogs)  // add middleware also
-    // add middleware also
-// router.put("blogss/:blogId",blogController.Bloggs)    // bacha hua hai
-
+ 
+router.get("/getBlogs",authMiddleware.authentication,blogController.getBlogs)  
+    
 router.put("/blogss/:blogId",authMiddleware.authentication,authMiddleware.authorization,blogController.Bloggs)
-// router.put("/updateData/:blogId",authMiddleware.authentication,authMiddleware.authorization,blogController.upData)
-
-// router.put("/status/:blogId",blogController.status)
 
 router.delete("/blogs/:blogId",authMiddleware.authentication,authMiddleware.authorization,blogController.deleteblog)
 
 router.delete("/deleteByElement",authMiddleware.authentication,authMiddleware.authorization,blogController.deleteByElement)
 
 router.post("/login",loginController.loginUser)
-
-
-
-
-
-
-
-
-
-
 
 
 

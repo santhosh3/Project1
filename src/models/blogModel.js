@@ -1,9 +1,6 @@
 const mongoose = require("mongoose")
 const moment = require("moment")
-// const { required } = require("nodemon/lib/config")
 const ObjectId = mongoose.Schema.Types.ObjectId
-// const date = new Date();
-// const todayDate = `${date.getDate()}/${date.getMonth()+1}/${date.getFullYear()}`
 
 
 let date = moment().format('DD/MM/YYYY');
@@ -37,10 +34,8 @@ const blogSchema = new mongoose.Schema({
     "category": {
         type: String,
         required: true
-        // examples :[technology,entertainment,life style,food,fashion]
+      
     },
-
-
 
     "subcategory": [{type : String}],
     "isPublished": {
@@ -49,7 +44,7 @@ const blogSchema = new mongoose.Schema({
     },
 
 
-    "publishedAt": Date, // if published is true publishedAt will have a date 2021-09-17T04:25:07.803Z
+    "publishedAt": Date, 
     date : {
         type : String,
       default : date
@@ -66,7 +61,7 @@ const blogSchema = new mongoose.Schema({
     date : {
         type : String,
       default : date
-    }, // if deleted is true deletedAt will have a date 2021-09-17T04:25:07.803Z,
+    }, 
 
 }, { timestamps: true })
 
