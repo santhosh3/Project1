@@ -21,7 +21,7 @@ const blogSchema = new mongoose.Schema({
 
     "body": {
         type: String,
-        required: true,
+        required: [true, "body is required"],
         trim : true
     },
 
@@ -29,7 +29,7 @@ const blogSchema = new mongoose.Schema({
     "authorId": {
         type: ObjectId,
         ref: "author",
-        required : true
+        required :[true,"authorId is required"]
     },
 
 
@@ -62,7 +62,11 @@ const blogSchema = new mongoose.Schema({
     },
 
     
-    "deletedAt": Date, // if deleted is true deletedAt will have a date 2021-09-17T04:25:07.803Z,
+    "deletedAt": Date,
+    date : {
+        type : String,
+      default : date
+    }, // if deleted is true deletedAt will have a date 2021-09-17T04:25:07.803Z,
 
 }, { timestamps: true })
 

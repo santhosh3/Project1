@@ -29,10 +29,10 @@ Repository for backend cohort - Uranium
 
 - Return HTTP status 400 for an invalid request with a response body like [this](#error-response-structure)
 
-### GET /blogsReturns all blogs in the coll
- ection that aren't deleted and are published
+### GET /blogsReturns all blogs in the collection that aren't deleted and are published
 - Return the HTTP status 200 if any documents are found. The response structure should be like [this](#successful-response-structure) 
 - If no documents are found then return an HTTP status 404 with a response like [this](#error-response-structure) 
+ 
 - Filter blogs list by applying filters. Query param can have any combination of below filters.
   - By author Id
   - By category
@@ -65,8 +65,8 @@ example of a query url: blogs?filtername=filtervalue&f2=fv2
 
 ### Authentication
 - Add an authorisation implementation for the JWT token that validates the token before every protected endpoint is called. If the validation fails, return a suitable error message with a corresponding HTTP status code
-- Protected routes are create a blog, edit a blog, get the list of blogs, delete a blog(s)
-- Set the token, once validated, in the request - `x-api-key`
+- Protected routes are create a blog, edit a blog, , delete a blog(s),  get the list of blogs
+- Set the token, once validated, in the request - `x-api-key`        
 - Use a middleware for authentication purpose.
 
 ### Authorisation
