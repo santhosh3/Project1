@@ -9,7 +9,7 @@ const authMiddleware =require("../middleware/authMiddleware")
 
 
 
-router.post("/authors",authorController.createAuthor1)
+router.post("/authors",authorController.createAuthor1)   // related to only phase 1 
 
 router.post("/blogs",authMiddleware.authentication,authMiddleware.authorization,blogController.createBlogger)
  
@@ -19,7 +19,7 @@ router.put("/blogss/:blogId",authMiddleware.authentication,authMiddleware.author
 
 router.delete("/blogs/:blogId",authMiddleware.authentication,authMiddleware.authorization,blogController.deleteblog)
 
-router.delete("/deleteByElement",authMiddleware.authentication,authMiddleware.authorization,blogController.deleteByElement)
+router.delete("/deleteByElement",blogController.deleteByElement)
 
 router.post("/login",loginController.loginUser)
 

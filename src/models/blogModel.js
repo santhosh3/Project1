@@ -31,13 +31,15 @@ const blogSchema = new mongoose.Schema({
 
 
     "tags": [{type : String}],
+
     "category": {
         type: String,
-        required: true
+        required: [true,"category is required"]
       
     },
 
     "subcategory": [{type : String}],
+
     "isPublished": {
         type: Boolean,
         default: false

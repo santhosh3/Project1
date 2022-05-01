@@ -3,7 +3,7 @@ const jwt = require('jsonwebtoken');
 const blogModel = require('../models/blogModel');
 
 
-const isValidObjectId = (ObjectId) => {
+const isValidObjectId = (ObjectId) => {              //checks if a string is valid MongoDB ObjectId in Node.js
   return mongoose.Types.ObjectId.isValid(ObjectId);
 };
 
