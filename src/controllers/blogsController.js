@@ -56,7 +56,11 @@ const createBlogger = async function (req, res) {
 const getBlogs = async function (req, res) {
     try {
         let data = req.query;
-        let blogsPresent = await blogModel.find({ deleted: false, isPublished: true, ...data }).count()   // doubts in spread operator
+        let blogsPresent = await blogModel.find({ deleted: false, isPublished: true, ...data }).count() // doubts in spread operator
+        if(!blogsPresent) return res.status(404).send({msg : "No such Data"})
+        if(blogsPresent.length == 0){
+            return res.status(404).send({msg : "No blogs are present"})
+        }
         res.status(200).send({ status: true, msg: blogsPresent })
     }
     catch (err) {
@@ -77,12 +81,13 @@ const getBlogs = async function (req, res) {
 
 const Bloggs = async function (req, res) {
     try {
-        let data = req.body
         let blogId = req.params.blogId
+        let data = req.body
 
-        if (!blogId) return res.status(400).send({ status: false, msg: "blogid is required" })
+        if (!blogId) return res.status(404).send({ status: false, msg: "blogid is required" })
         let findblog = await blogModel.findById(blogId)
         if (!findblog) return res.status(404).send({ msg: "blogid invalid" })
+      
         if (findblog.deleted == true) return res.status(404).send({ msg: "Blog is already deleted " })
         if (findblog.deleted == false) {
             let updatedBlog = await blogModel.findOneAndUpdate({ _id: blogId }, {
@@ -151,11 +156,9 @@ const deleteByElement = async function (req, res) {
         let data = req.query
         let filter = {...data}
         if (!data) return res.status(404).send({ msg: " data is required in query params" })
-        // if (Object.keys(data) == 0) return res.status(400).send({ status: false, msg: "not a vaild input" })
-
         let check = await blogModel.findOne(filter)
         if (!check) return res.status(404).send({ status: false, msg: "blog does not exist" })
-        if (check.deleted == true) return res.status(404).send({ status: false, msg: " blog is allready deleted" })
+        if (check.deleted == true) return res.status(404).send({ status: false, msg: " blog is already deleted" })
         if (check.deleted == false) {
             let idList = check._id
             console.log(idList)

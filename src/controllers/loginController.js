@@ -14,6 +14,7 @@ const loginUser = async function (req, res) {
           status: false,
           msg: "username or the password is not correct",
         });
+        
         let token = jwt.sign(
         {
           userId: user._id.toString(),
