@@ -36,13 +36,13 @@ router.post("/login",loginController.loginUser)
 
 router.post("/blogs",authMiddleware.authentication,authMiddleware.authorization,blogController.createBlogger)
  
-router.get("/getBlogs",authMiddleware.authentication,blogController.getBlogs)  
+router.get("/blogs",authMiddleware.authentication,blogController.getBlogs)  
     
-router.put("/blogss/:blogId",authMiddleware.authentication,authMiddleware.authorization,blogController.Bloggs)
+router.put("/blogs/:blogId",authMiddleware.authentication,authMiddleware.authorization,blogController.Bloggs)
 
 router.delete("/blogs/:blogId",authMiddleware.authentication,authMiddleware.authorization,blogController.deleteblog)
 
-router.delete("/deleteByElement",authMiddleware.authentication,authMiddleware.authorization,blogController.deleteByElement)
+router.delete("/blogs",authMiddleware.authentication,authMiddleware.authorization,blogController.deleteByElement)
 
 
 module.exports = router;
