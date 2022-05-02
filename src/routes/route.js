@@ -17,13 +17,13 @@ const authMiddleware =require("../middleware/authMiddleware")
 
 // router.post("/blogs",blogController.createBlogger)
  
-// router.get("/getBlogs",blogController.getBlogs)  
+// router.get("/blogs",blogController.getBlogs)  
     
-// router.put("/blogss/:blogId",blogController.Bloggs)
+// router.put("/blogs/:blogId",blogController.Bloggs)
 
 // router.delete("/blogs/:blogId",blogController.deleteblog)
 
-// router.delete("/deleteByElement",blogController.deleteByElement)
+// router.delete("/blogs",blogController.deleteByElement)
 
 
 //   -------------------------------PHASE 2 --------------------------------------------------------------------
