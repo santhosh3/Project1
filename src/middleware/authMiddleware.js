@@ -48,7 +48,7 @@ const authorization = async (req, res, next) => {
 
     let decodedToken = jwt.verify(token, "project1-group3");
 
-    let loggedInUser = decodedToken.userId;
+    let loggedInUser = decodedToken.authorId;
 
     let userLogging;
 

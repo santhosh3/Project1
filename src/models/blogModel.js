@@ -11,14 +11,14 @@ const blogSchema = new mongoose.Schema({
 
     "title": {
         type: String,
-        required: [true,"title is required"],
+        required: [true,"blog title is required"],
         trim : true,
     },
 
 
     "body": {
         type: String,
-        required: [true, "body is required"],
+        required: [true, "blog body is required"],
         trim : true
     },
 
@@ -26,19 +26,20 @@ const blogSchema = new mongoose.Schema({
     "authorId": {
         type: ObjectId,
         ref: "author",
-        required :[true,"authorId is required"]
+        required :[true," blog author is required"]
     },
 
 
-    "tags": [{type : String}],
+    "tags": [{type : String, trim: true}],
 
     "category": {
         type: String,
-        required: [true,"category is required"]
+        required: [true,"blog category is required"],
+        trim: true
       
     },
 
-    "subcategory": [{type : String}],
+    "subcategory": [{type : String, trim : true}],
 
     "isPublished": {
         type: Boolean,
@@ -46,10 +47,9 @@ const blogSchema = new mongoose.Schema({
     },
 
 
-    "publishedAt": Date, 
-    date : {
-        type : String,
-      default : date
+    "publishedAt":  {
+        type : Date,
+      default : null
     },
 
 
@@ -59,10 +59,9 @@ const blogSchema = new mongoose.Schema({
     },
 
     
-    "deletedAt": Date,
-    date : {
-        type : String,
-      default : date
+    "deletedAt": {
+        type : Date,
+      default : null
     }, 
 
 }, { timestamps: true })

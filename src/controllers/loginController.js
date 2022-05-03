@@ -17,7 +17,7 @@ const loginUser = async function (req, res) {
         
         let token = jwt.sign(
         {
-          userId: user._id.toString(),
+          authorId: user._id.toString(),
           batch: "uranium-Project",
           organisation: "FUnctionUp-login",
         },
@@ -25,7 +25,7 @@ const loginUser = async function (req, res) {
       );
       console.log(token)
 
-      res.status(200).send({ status: true, data: token });   
+      res.status(200).send({ status: true, msg : "logged-in successfully",token: token });   
     }
     else {
       res.status(400).send({ msg: "Bad Request" })       

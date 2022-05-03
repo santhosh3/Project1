@@ -5,13 +5,13 @@ const mongoose = require("mongoose")
 const authorSchema = new mongoose.Schema({
 
   
-    "fName": {
+    "fname": {
         type: String,
         required: [true, "firstName is required" ],
         trim: true
     },
 
-    "lName": {
+    "lname": {
         type: String,
         required: [true, "lastName is required"],
         trim: true
@@ -20,7 +20,7 @@ const authorSchema = new mongoose.Schema({
     "title": {
         type: String,
         required: [true, "title is required"],
-        enum: ["Mr", "Mrs", "Miss"],
+        enum: ["Mr", "Mrs", "Miss","Mast"],
         trim: true
     },
 
@@ -31,12 +31,12 @@ const authorSchema = new mongoose.Schema({
         lowercase: true,
         unique: true,
         validate: {
-            validator: function(v) {
-                return /^\w+([\.-]?\w+)@\w+([\.-]?\w+)(\.\w{2,3})+$/.test(v);
+            validator: function(email) {
+                return /^\w+([\.-]?\w+)@\w+([\.-]?\w+)(\.\w{2,3})+$/.test(email);
             },
             message: "Please enter a valid email"
         },
-        required: [true, "Email required"]
+        required: [true, "Email address is required"]
     },
     
     
