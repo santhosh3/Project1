@@ -56,7 +56,7 @@ const createBlogger = async function (req, res) {
 const getBlogs = async function (req, res) {
     try {
         let data = req.query;
-        let blogsPresent = await blogModel.find({ isDeleted: false, isPublished: true, ...data })// doubts in spread operator
+        let blogsPresent = await blogModel.find({ isDeleted: false, isPublished: true, ...data }).count()// doubts in spread operator
         if(!blogsPresent) return res.status(404).send({status: false, msg : "No such Data"})
         if(blogsPresent.length == 0){
             return res.status(404).send({status: false,msg : "No blogs are present"})
