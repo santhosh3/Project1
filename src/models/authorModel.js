@@ -38,17 +38,8 @@ const authorSchema = new mongoose.Schema({
         },
         required: [true, "Email address is required"]
     },
-    
-    
-    
     password :{
         type : String,
-        validate: {
-            validator: function(p) {
-                return /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,20}$/.test(p)
-            },
-            message: "Please enter a valid password : It must contains atleast{ one Uppercase , one Lowercase, one special character and one number}"
-        },
         required : [true,"password is required"],
         trim : true,
         

@@ -1,41 +1,43 @@
 const jwt = require("jsonwebtoken");
-const blogModel = require("../models/blogModel");
 const authorModel = require("../models/authorModel");
 
+const validRequestBody = function(requestBody){
+  return Object.keys(requestBody).length > 0
+}
 
-const loginUser = async function (req, res) {
-  try {
-    let userName = req.body.email;
-    let password = req.body.password;
-    if (Object.keys(userName).length != 0 && Object.keys(password).length != 0) {
-      let user = await authorModel.findOne({ email: userName, password: password });
-      if (!user)
-        return res.status(403).send({           
-          status: false,
-          msg: "username or the password is not correct",
-        });
-        
-        let token = jwt.sign(
-        {
-          authorId: user._id.toString(),
-          batch: "uranium-Project",
-          organisation: "FUnctionUp-login",
-        },
-        "project1-group3"
-      );
-      console.log(token)
+const isValid = function (value) {
+  if (typeof value === "undefined" || value === null) return false
+  if (typeof value === "string" && value.trim().length === 0) return false
+  return true
+}
 
-      res.status(200).send({ status: true, msg : "logged-in successfully",token: token });   
-    }
-    else {
-      res.status(400).send({ msg: "Bad Request" })       
-    }
+const loginAuthor = async function(req,res){
+  try{
+      const body = req.body
+      if(!validRequestBody(body)){
+          return res.status(400).send({status:false,mess:"Please provide login details"})
+      }
+      const {email,password} = body
+      if(!isValid(email) && !isValid(password)){
+          return res.status(400).send({status:false,mess:"Mandetory things are missing"})
+      }
+      if (!(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email))) {
+        return res.status(400).send({ status: false, message: "please provide valid Email" })
+      }
+      let author = await authorModel.findOne({email,password});
+      if(!author){
+          return res.status(400).send({status:false, mess: "Invalid login credentials"})
+      }
+      let token =  jwt.sign({
+          authorid:author._id,
+          iat: Math.floor(Date.now()/1000),
+          exp: Math.floor(Date.now()/1000)+10*60*60,
+      }, 'project1')
+      res.header('x-api-key', token);
+      res.status(200).send({status:true, mess:"Athor login is successful", data:{token}})
+  }catch(error){
+      res.status(500).send({status:false,mess:error.message})
   }
-  catch (err) {
-    console.log(err.message)
-    res.status(500).send({ msg: "Error", Error: err.message })  
-  }
-};
+}
 
-
-module.exports.loginUser = loginUser
+module.exports.loginAuthor = loginAuthor

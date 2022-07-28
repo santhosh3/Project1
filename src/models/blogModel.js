@@ -9,57 +9,41 @@ console.log(date)
 
 const blogSchema = new mongoose.Schema({
 
-    "title": {
+    title: {
         type: String,
-        required: [true,"blog title is required"],
+        required: true,
         trim : true,
     },
-
-
-    "body": {
+    body: {
         type: String,
-        required: [true, "blog body is required"],
+        required: true,
         trim : true
     },
-
-
-    "authorId": {
+    authorId: {
         type: ObjectId,
         ref: "author",
-        required :[true," blog author is required"]
+        required :true
     },
-
-
-    "tags": [{type : String, trim: true}],
-
-    "category": {
+    tags: [{type : String, trim: true}],
+    category: {
         type: String,
-        required: [true,"blog category is required"],
+        required: true,
         trim: true
-      
     },
-
-    "subcategory": [{type : String, trim : true}],
-
-    "isPublished": {
+    subcategory: [{type : String, trim : true}],
+    isPublished: {
         type: Boolean,
         default: false
     },
-
-
-    "publishedAt":  {
-        type : Date,
-      default : null
-    },
-
-
-    "isDeleted": {
+    // publishedAt:  {
+    //     type: Date,
+    //     default: null
+    // },
+    isDeleted: {
         type: Boolean,
         default: false
     },
-
-    
-    "deletedAt": {
+    deletedAt: {
         type : Date,
       default : null
     }, 

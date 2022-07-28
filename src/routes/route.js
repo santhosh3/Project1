@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 
 
-const authorController= require("../controllers/authorController")
+const authorConteroller= require("../controllers/authorController")
 const blogController= require("../controllers/blogsController")
 const loginController = require("../controllers/loginController")
 const authMiddleware =require("../middleware/authMiddleware")
@@ -28,21 +28,18 @@ const authMiddleware =require("../middleware/authMiddleware")
 
 //   -------------------------------PHASE 2 --------------------------------------------------------------------
 
+router.post('/authors', authorConteroller.createAuthor1)
+router.post('/login', loginController.loginAuthor)
 
-
-router.post("/authors",authorController.createAuthor1) 
-
-router.post("/login",loginController.loginUser)
-
-router.post("/blogs",authMiddleware.authentication,authMiddleware.authorization,blogController.createBlogger)
+router.post("/blogs",authMiddleware.authentication,blogController.createBlogger)
  
 router.get("/blogs",authMiddleware.authentication,blogController.getBlogs)  
     
-router.put("/blogs/:blogId",authMiddleware.authentication,authMiddleware.authorization,blogController.Bloggs)
+router.put("/blogs/:blogId",authMiddleware.authentication,blogController.Bloggs)
 
-router.delete("/blogs/:blogId",authMiddleware.authentication,authMiddleware.authorization,blogController.deleteblog)
+router.delete("/blogs/:blogId",authMiddleware.authentication,blogController.deleteblog)
 
-router.delete("/blogs",authMiddleware.authentication,authMiddleware.authorization,blogController.deleteByElement)
+router.delete("/blogs",authMiddleware.authentication,blogController.deleteByElement)
 
 
 module.exports = router;
